@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+
+public class Aluno {
+    private int matricula;
+    private String nome;
+    private ArrayList<Double> notas;
+
+    public Aluno(int matricula, String nome) {
+        this.matricula = matricula;
+        this.nome = nome;
+        this.notas = new ArrayList<>();
+    }
+
+    public void adicionarNota(double nota) {
+        this.notas.add(nota);
+    }
+
+    public double calcularMedia() {
+        double soma = 0.0;
+        for (double nota : notas) {
+            soma += nota;
+        }
+        return (notas.size() > 0) ? soma / notas.size() : 0.0;
+    }
+
+    public void verificarAprovacao() {
+        double media = calcularMedia();
+        if (media >= 7.0) {
+            System.out.println("Aluno " + nome + " aprovado com média: " + media);
+        } else {
+            System.out.println("Aluno " + nome + " reprovado com média: " + media);
+        }
+    }
+
+    public static void main(String[] args) {
+        Aluno aluno1 = new Aluno(12345, "João");
+        aluno1.adicionarNota(8.0);
+        aluno1.adicionarNota(6.5);
+        aluno1.adicionarNota(7.2);
+        aluno1.verificarAprovacao();
+    }
+}
